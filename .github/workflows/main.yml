@@ -1,4 +1,4 @@
-name: goodmoring
+name: moring
 on:
   schedule:
   - cron:  '0 0 * * *'
