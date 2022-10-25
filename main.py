@@ -69,12 +69,10 @@ data = {
     "value":city
   },
   "highest": {
-    "value": math.floor(weather['high']),
-    "color": get_random_color()
+    "value": math.floor(weather['high'])
   },
   "lowest": {
-    "value": math.floor(weather['low']),
-    "color": get_random_color()
+    "value": math.floor(weather['low'])
   }
 }
 print(data)
