@@ -48,7 +48,35 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()},"city":{"value":city}}
+data = {
+  "weather":{
+    "value":wea
+  },
+  "temperature":{
+    "value":temperature
+  },
+  "love_days":{
+    "value":get_count()
+  },
+  "birthday_left":{
+    "value":get_birthday()
+  },
+  "words":{
+    "value":get_words(), 
+    "color":get_random_color()
+  },
+  "city":{
+    "value":city
+  },
+  "highest": {
+    "value": math.floor(weather['high']),
+    "color": get_random_color()
+  },
+  "lowest": {
+    "value": math.floor(weather['low']),
+    "color": get_random_color()
+  }
+}
 print(data)
 print(user_id)
 for user in user_id:
