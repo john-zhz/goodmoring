@@ -7,21 +7,21 @@ import os
 import random
 
 today = datetime.now()
-start_date = os.environ['START_DATE']
-city = os.environ['CITY']
-birthday = os.environ['BIRTHDAY']
+start_date = os.environ[b'START_DATE']
+city = os.environ[b'CITY']
+birthday = os.environ[b'BIRTHDAY']
 
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
 
-user_id = ['oNfo16DOY_7_8a5WDLTH6wS6yh2s','oNfo16BBMqTcGqaZSKyS4r1p4dmg']
+user_id = [b'oNfo16DOY_7_8a5WDLTH6wS6yh2s',b'oNfo16BBMqTcGqaZSKyS4r1p4dmg']
 template_id = os.environ["TEMPLATE_ID"]
 
 
 def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
-  weather = res['data']['list'][0]
+  weather = res[b'data'][b'list'][0]
   return weather
 
 def get_count():
@@ -38,7 +38,7 @@ def get_words():
   words = requests.get("https://api.shadiao.pro/chp")
   if words.status_code != 200:
     return get_words()
-  return words.json()['data']['text']
+  return words.json()[b'data'][b'text']
 
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
@@ -48,7 +48,7 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 weather = get_weather()
-wea, temperature = weather['weather'], math.floor(weather['temp'])
+wea, temperature = weather[b'weather'], math.floor(weather[b'temp'])
 data = {
   "weather":{
     "value":wea
@@ -70,10 +70,10 @@ data = {
     "value":city
   },
   "highest": {
-    "value": math.floor(weather['high'])
+    "value": math.floor(weather[b'high'])
   },
   "lowest": {
-    "value": math.floor(weather['low'])
+    "value": math.floor(weather[b'low'])
   }
 }
 print(data)
